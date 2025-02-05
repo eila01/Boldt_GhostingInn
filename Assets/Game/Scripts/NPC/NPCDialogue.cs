@@ -9,7 +9,7 @@ public class NPCDialogue : MonoBehaviour
 
     void Start()
     {
-        speechBubbleRenderer = transform.Find("SpeechBubble").GetComponent<SpriteRenderer>();
+        speechBubbleRenderer = transform.Find("SpeechBubble_01").GetComponent<SpriteRenderer>();
         speechBubbleRenderer.enabled = false; 
     }
 
