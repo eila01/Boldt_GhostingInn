@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 310167902}
   - component: {fileID: 310167901}
   - component: {fileID: 310167900}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,8 @@ GameObject:
   - component: {fileID: 549538788}
   - component: {fileID: 549538787}
   - component: {fileID: 549538786}
-  m_Layer: 0
+  - component: {fileID: 549538789}
+  m_Layer: 11
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1116,7 +1117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7495, y: 1.7495, z: 1.7495}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1968167855}
@@ -1194,6 +1195,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549538784}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &549538789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549538784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e037233bd5698734b81dceef95d9ad07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcGhost: {fileID: 9073910318158269067, guid: 6b6925f15731e9b47bd148434fd4a2be, type: 3}
+  pointLight: {fileID: 1787965708}
+  particles: {fileID: 754502101}
+  textMesh: {fileID: 1163203505}
+  spawnPoint: {fileID: 1023805686}
 --- !u!1 &577218731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1451,7 @@ GameObject:
   - component: {fileID: 754502099}
   - component: {fileID: 754502101}
   - component: {fileID: 754502100}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6272,7 +6290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &778034841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6557,7 +6575,7 @@ Transform:
   m_GameObject: {fileID: 876826264}
   serializedVersion: 2
   m_LocalRotation: {x: 0.087469734, y: -0.05227372, z: 0.004596343, w: 0.9947841}
-  m_LocalPosition: {x: -1.6091752, y: 3.5527055, z: -11.377299}
+  m_LocalPosition: {x: -2.1160088, y: 3.3973718, z: -11.242809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6740,7 +6758,7 @@ Transform:
   m_GameObject: {fileID: 1006001681}
   serializedVersion: 2
   m_LocalRotation: {x: 0.087469734, y: -0.05227372, z: 0.004596343, w: 0.9947841}
-  m_LocalPosition: {x: -1.6091752, y: 3.5527055, z: -11.377299}
+  m_LocalPosition: {x: -2.1160088, y: 3.3973718, z: -11.242809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6755,7 +6773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023805686}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6771,7 +6789,7 @@ Transform:
   m_GameObject: {fileID: 1023805685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.49, y: 0, z: 0}
+  m_LocalPosition: {x: 2.95, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6837,7 +6855,7 @@ GameObject:
   - component: {fileID: 1163203504}
   - component: {fileID: 1163203506}
   - component: {fileID: 1163203505}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7443,11 +7461,11 @@ MonoBehaviour:
   UpdateMethod: 2
   Targets:
   - Object: {fileID: 25518424}
-    Weight: 1
-    Radius: 1
+    Weight: 3
+    Radius: 3
   - Object: {fileID: 1285182193}
-    Weight: 1
-    Radius: 1
+    Weight: 5
+    Radius: 5
   m_LegacyTargets: []
 --- !u!4 &1416179758
 Transform:
@@ -7458,7 +7476,7 @@ Transform:
   m_GameObject: {fileID: 1416179756}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8475518, y: 1.4586151, z: 0.37349686}
+  m_LocalPosition: {x: -3.3543854, y: 1.3032813, z: 0.5079862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7611,7 +7629,7 @@ GameObject:
   - component: {fileID: 1787965706}
   - component: {fileID: 1787965708}
   - component: {fileID: 1787965707}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7848,10 +7866,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1968167855}
-  - component: {fileID: 1968167856}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
-  m_TagString: Untagged
+  m_TagString: GhostObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7877,22 +7894,6 @@ Transform:
   - {fileID: 1023805686}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1968167856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968167854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e037233bd5698734b81dceef95d9ad07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcGhost: {fileID: 9073910318158269067, guid: 6b6925f15731e9b47bd148434fd4a2be, type: 3}
-  particles: {fileID: 754502101}
-  textMesh: {fileID: 1163203505}
-  spawnPoint: {fileID: 1023805686}
 --- !u!1 &1992156064
 GameObject:
   m_ObjectHideFlags: 0

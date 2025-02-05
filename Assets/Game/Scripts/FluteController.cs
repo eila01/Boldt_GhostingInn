@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class FluteController : MonoBehaviour
 {
-    
+
     // Variables
     public float speed;
     public float groundDistance;
     public float followDistance = 1; // follow distance from PC 
-    
+
     public LayerMask terrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
-    
+
     // store player location
     //public Transform playerTransform;
-    
+
     private Collider _collider;
     private PlayerSwitch _playerSwitch;
     public bool _isEnable;
     public Collider playerCollider;
-    
+
     public Transform playerTarget;
 
     void Start()
@@ -28,14 +28,14 @@ public class FluteController : MonoBehaviour
         _playerSwitch = GetComponent<PlayerSwitch>();
         rb = gameObject.GetComponent<Rigidbody>();
         /*
-        GameObject player = GameObject.FindGameObjectWithTag("Player");     
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         Physics.IgnoreCollision(player.GetComponent<Collider>(), _collider);
         */
     }
 
     void Update()
     {
-        
+
         RaycastHit hit;
         Vector3 castPos = transform.position;
         castPos.y += 1;
@@ -48,10 +48,11 @@ public class FluteController : MonoBehaviour
                 transform.position = movePos;
             }
         }
+
         if (_isEnable)
         {
-                     
-                 
+
+
             // move the body
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
@@ -60,11 +61,13 @@ public class FluteController : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
             }
+
             // move down
             if (Input.GetKey(KeyCode.LeftControl))
             {
                 rb.AddForce(Vector3.down * speed, ForceMode.Impulse);
             }
+
             Vector3 moveDir = new Vector3(x, 0, y);
             rb.linearVelocity = moveDir * speed;
 
@@ -87,14 +90,26 @@ public class FluteController : MonoBehaviour
     public void followPlayer()
     {
         float dist = Vector3.Distance(transform.position, playerTarget.position);
-       // transform.position = Vector3.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
-       if (dist <= 2)
-       {
-           rb.linearVelocity = Vector3.zero;
-       }
-       else
-       {
-           transform.position = Vector3.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
-       }
+        // transform.position = Vector3.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
+        if (dist <= 2)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
+        }
+    }
+
+    void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.tag == "GhostObj")
+        {
+            // enable text
+
+            // if flute enter collision then check if flute is holding down E
+
+            // if flute holds down E then turn down light intensity / turn off particles / get disable text / and spawn Ghost
+        }
     }
 }

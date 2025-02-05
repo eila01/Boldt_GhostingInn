@@ -7,10 +7,15 @@ public class NPCDialogue : MonoBehaviour
     private Transform player;
     public SpriteRenderer speechBubbleRenderer; // allows to turn the speech bubble off / on
 
-    void Start()
+    void Awake()
     {
         speechBubbleRenderer = transform.Find("SpeechBubble_01").GetComponent<SpriteRenderer>();
-        speechBubbleRenderer.enabled = false; 
+                speechBubbleRenderer.enabled = false; 
+    }
+
+    void Start()
+    {
+        
     }
 
     void OnTriggerStay(Collider collision)
