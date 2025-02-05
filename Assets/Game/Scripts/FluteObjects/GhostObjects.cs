@@ -14,17 +14,19 @@ public class GhostObjects : MonoBehaviour
     [SerializeField] TextMeshPro textMesh;
     public Transform spawnPoint;
     private Transform player;
-    private FluteController activeFlute;
+    [SerializeField] public FluteController activeFlute;
 
     private double timer = 0;
     public bool isPossessed;
 
     private void Start()
     {
+        timer = 0;
         isPossessed = true; 
         activeFlute = GameObject.Find("Flute").GetComponent<FluteController>();
-        textMesh = GameObject.Find("Text").GetComponent<TextMeshPro>();
+        //textMesh = GameObject.Find("PText").GetComponent<TextMeshPro>();
         textMesh.text = "";
+       // activeFlute = GameObject.Find("Flute").GetComponent<FluteController>();
     }
 
     void Update()
@@ -34,15 +36,17 @@ public class GhostObjects : MonoBehaviour
 
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "Flute" && isPossessed == true)
+        if (collision.gameObject.tag == "Flute" && isPossessed && activeFlute._isEnable)
         {
             textMesh.text = "E";// enable text
             // if flute enter collision then check if flute is holding down E
                 if (Input.GetKey(KeyCode.E)) 
                 {
                     timer += 0.1;
+                    //Debug.Log(timer.ToString());
                     if (timer >= 5)
                     {
+                        
                         isPossessed = false;
                         SpawnGhostNPC();
                         if (isPossessed == false)
@@ -69,7 +73,7 @@ public class GhostObjects : MonoBehaviour
         }
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.tag == "Flute" && isPossessed == true)
+        if (collision.gameObject.tag == "Flute" && isPossessed && activeFlute._isEnable)
         {
             // off
             textMesh.text = "";

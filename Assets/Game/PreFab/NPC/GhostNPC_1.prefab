@@ -134,7 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b235f5363dffc314c9afadee038fc0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeFlute: {fileID: 0}
   speechBubbleRenderer: {fileID: 6388178306478155170}
+  isGhost: 1
 --- !u!212 &6388178306478155170
 SpriteRenderer:
   m_ObjectHideFlags: 0
