@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8dafe95ebd95354ca341d1a06393493
+guid: 2a00d004e2474f441b547a99964b80c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,12 +95,78 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: DialogueBox_0
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 2023
+        width: 2472
+        height: 826
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc4ce8a6018f9c74098b8e040ff3f31f
+      internalID: -1278528565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialogueBox_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 938
+        width: 2397
+        height: 762
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 901d9dc862a58d74ea76e2a08778a0d1
+      internalID: -1739867587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialogueBox_2
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 196
+        width: 165
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3885884191b800a47991eab229acf6ee
+      internalID: -1611323921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: a38a3468ba881254c93e2d3d60e68c7d
     internalID: 0
     vertices: []
     indices: 
@@ -109,7 +175,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DialogueBox_0: -1278528565
+      DialogueBox_1: -1739867587
+      DialogueBox_2: -1611323921
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
