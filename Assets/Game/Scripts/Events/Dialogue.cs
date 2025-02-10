@@ -20,6 +20,8 @@ public class Dialogue : Events
     bool displayingCharacters;
     bool finishSentenceEarly;
     bool closingSentence;
+    [Space]
+    public Sentence[] sentences;
 
     public override void TriggerFunction()
     {
@@ -39,17 +41,103 @@ public class Dialogue : Events
                 leftPointer.SetActive(false);
                 trigger.StartCoroutine(SetPointerDirection(rightPointer.transform, character.transform));
             }
-
+            else
+            {
+                rightPointer.SetActive(false);
+                leftPointer.SetActive(true);
+                trigger.StartCoroutine(SetPointerDirection(leftPointer.transform, character.transform));
+            }
+            trigger.StartCoroutine(DisplaySentence(sentenceIndex));
+        }
+        else if (sentenceIndex < sentences.Length && !displayingCharacters && !closingSentence)
+        {
+            trigger.StartCoroutine(DisplaySentence(sentenceIndex)); // display next sentence 
+        }
+        else if (displayingCharacters)
+        {
+            finishSentenceEarly = true; 
+            
+        }
+        else if (!closingSentence)
+        {
+            trigger.StartCoroutine(CloseSentence());
         }
 
         IEnumerator SetPointerDirection(Transform pointerT, Transform characterT)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame(); // takes a frame to play animation
+            while (textBoxAnimator.GetCurrentAnimatorStateInfo(0).IsName("A_TextOpen"))
+            {
+                // from character to the pointer
+                pointerT.up = pointerT.position - camera.WorldToScreenPoint(characterT.position);
+                yield return null;
+            }
         }
     }
 
     public override void EndFunction()
     {
-        
+        // allow player to move
     }
+
+    IEnumerator DisplaySentence(int currentSentence)
+    {
+        icon.SetActive(false);
+        displayingCharacters = true;
+        textBox.text = "";
+        yield return new WaitForSeconds(0.5f);
+        char[] characters = sentences[currentSentence].text.ToCharArray();
+        for (int i = 0; i < characters.Length; i++)
+        {
+            textBox.text += characters[i];
+            yield return new WaitForSeconds(1/sentences[currentSentence].speed);
+            if (finishSentenceEarly)
+            { 
+                textBox.text = sentences[currentSentence].text;
+                i = characters.Length;
+                finishSentenceEarly = false;
+                yield return null;
+            }
+        }
+
+        sentenceIndex++;
+        displayingCharacters = false; // finish sentence
+        icon.SetActive(true); // display icon 
+
+    }
+
+    IEnumerator CloseSentence()
+    {
+        closingSentence = true;
+        textBoxAnimator.Play("A_TextClosed", 0); // takes a frame
+        icon.SetActive(false);
+        yield return new WaitForEndOfFrame();
+        while (textBoxAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        {
+            yield return null;
+        }
+        sentenceIndex = 0; // talk to NPC again
+        if (trigger.dialogueIndex + 1 < trigger.dialogue.Length)
+        {
+            trigger.dialogueIndex++;
+            trigger.SetThisEvent(trigger.type); // set next trigger
+            trigger.thisEvent.TriggerFunction();
+        }
+        else
+        {
+            // if there is no dialogue
+            trigger.dialogueIndex = 0;
+            trigger.SetThisEvent(trigger.type);
+            EndFunction();
+        }
+        closingSentence = false;
+    }
+}
+
+[System.Serializable]
+public class Sentence
+{
+    [TextArea()]
+    public string text;
+    public float speed;
 }

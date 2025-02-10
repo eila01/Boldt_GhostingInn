@@ -35,7 +35,7 @@ public class EventTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             machine.currentTrigger = this;
             if (triggerType == TriggerType.EnterTrigger)

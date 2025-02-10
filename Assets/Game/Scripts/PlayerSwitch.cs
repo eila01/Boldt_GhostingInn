@@ -12,10 +12,11 @@ public class PlayerSwitch : MonoBehaviour
     public bool player2Active = false;
 
     [SerializeField] public FluteController activeFlute;
-
+    [SerializeField] private CameraSwitch cameraSwitch;
     private void Start()
     {
         activeFlute = GameObject.Find("Flute").GetComponent<FluteController>();
+        //cameraSwitch = GameObject.Find("CameraSwitch").GetComponent<CameraSwitch>();
     }
 
     void Update()
@@ -29,10 +30,12 @@ public class PlayerSwitch : MonoBehaviour
         if (player2Active == true)
         {
             activeFlute._isEnable = true;
+           
         }
         else
         {
             activeFlute._isEnable = false;
+            
         }
     }
 
@@ -43,7 +46,9 @@ public class PlayerSwitch : MonoBehaviour
             playerController.enabled = false; // turn Off the player 1 controller
             player2Controller.enabled = true; // turn on pFlute
             player1Active = false; 
-            player2Active = true;
+            player2Active = true; 
+            cameraSwitch.Manager = 1;
+            cameraSwitch.ManageCamera();
         }
         else
         {
@@ -51,6 +56,15 @@ public class PlayerSwitch : MonoBehaviour
             //player2Controller.enabled = false; // turn off pFlute
             player1Active = true; 
             player2Active = false;
+            cameraSwitch.Manager = 0;
+            cameraSwitch.ManageCamera();
+        }
+    }
+    public void APressedFunction()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            
         }
     }
 }
