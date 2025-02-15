@@ -12,7 +12,7 @@ public class FluteController : MonoBehaviour
     public Rigidbody rb;
     public SpriteRenderer sr;
 
-    // store player location
+    // store player locations
     //public Transform playerTransform;
 
     private Collider _collider;

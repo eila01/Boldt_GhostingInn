@@ -6,7 +6,9 @@ public class EventTrigger : MonoBehaviour
     // Event Type 
     public enum EventType
     {
-        Dialogue
+        Dialogue,
+        Quest,
+        Cutscene
     }
 
     public enum TriggerType
