@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CircleSync : MonoBehaviour
 {
-    public static int PosID = Shader.PropertyToID("_Position");
+    public static int PosID = Shader.PropertyToID("_PlayerPosition");
     public static int SizeID = Shader.PropertyToID("_Size");
     public Material wallMaterial;
     public Camera Camera;
@@ -14,7 +14,7 @@ public class CircleSync : MonoBehaviour
 
         if (Physics.Raycast(ray, 3000, Mask))
         {
-            wallMaterial.SetFloat(SizeID, 1);
+            wallMaterial.SetFloat(SizeID, 2);
         }
         else
         {

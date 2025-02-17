@@ -632,7 +632,7 @@
     "m_FragmentContext": {
         "m_Position": {
             "x": 805.5999755859375,
-            "y": -208.00003051757813
+            "y": -208.00001525878907
         },
         "m_Blocks": [
             {
@@ -1633,7 +1633,7 @@
     "m_AllowMaterialOverride": false,
     "m_SurfaceType": 1,
     "m_ZTestMode": 4,
-    "m_ZWriteControl": 0,
+    "m_ZWriteControl": 1,
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
@@ -1836,7 +1836,7 @@
     "m_Title": "Replacement",
     "m_Position": {
         "x": -1569.5999755859375,
-        "y": -235.99998474121095
+        "y": -236.0
     }
 }
 
@@ -1990,7 +1990,7 @@
     "m_Title": "Screen UV",
     "m_Position": {
         "x": -2565.60009765625,
-        "y": -235.99998474121095
+        "y": -236.0
     }
 }
 
@@ -3166,10 +3166,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -42.39999008178711,
-            "y": -515.2000732421875,
-            "width": 148.8000030517578,
-            "height": 33.600006103515628
+            "x": -40.0,
+            "y": -533.5999755859375,
+            "width": 148.80001831054688,
+            "height": 33.5999755859375
         }
     },
     "m_Slots": [
@@ -3243,8 +3243,8 @@
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_Value": {
         "r": 0.0,
@@ -4379,7 +4379,7 @@
     "m_Title": "Size Correction",
     "m_Position": {
         "x": -1905.5999755859375,
-        "y": 184.80001831054688
+        "y": 184.79998779296876
     }
 }
 
