@@ -46,7 +46,7 @@ public class TVChangeColor : MonoBehaviour
           outline.enabled = false;
           activeFlute = GameObject.Find("Flute").GetComponent<FluteController>();
           textMesh.text = "";
-          tvScreen.GetComponent<Material>().color = material.color;
+//          tvScreen.GetComponent<Material>().color = material.color;
        }
     
        void Awake()
