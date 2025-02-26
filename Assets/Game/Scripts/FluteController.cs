@@ -21,12 +21,16 @@ public class FluteController : MonoBehaviour
     public Collider playerCollider;
 
     public Transform playerTarget;
-
+    public RoomCameraSwap roomCameraSwap;
     void Start()
     {
+        //roomCameraSwap = roomCameraSwap.GetComponent<RoomCameraSwap>();
+        
+        roomCameraSwap.rightRotate = false;
         _isEnable = false;
         _playerSwitch = GetComponent<PlayerSwitch>();
         rb = gameObject.GetComponent<Rigidbody>();
+        
         /*
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Physics.IgnoreCollision(player.GetComponent<Collider>(), _collider);
@@ -52,10 +56,23 @@ public class FluteController : MonoBehaviour
         if (_isEnable)
         {
 
-
+            
             // move the body
+            
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
+
+            if (roomCameraSwap.rightRotate == true)
+            {
+                x = Input.GetAxis("Vertical");
+                 y = Input.GetAxis("Horizontal");
+            }
+            else
+            {
+                x = Input.GetAxis("Horizontal");
+                 y = Input.GetAxis("Vertical");
+            }
+           
             // move up
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -69,6 +86,7 @@ public class FluteController : MonoBehaviour
             }
 
             Vector3 moveDir = new Vector3(x, 0, y);
+            
             rb.linearVelocity = moveDir * speed;
 
             if (x != 0 && x < 0)

@@ -8,6 +8,7 @@ TagManager:
   - Flute
   - GhostObj
   - Wall
+  - Collision
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EventTrigger : MonoBehaviour
 {
+    
     // Event Type 
     public enum EventType
     {
@@ -34,23 +35,33 @@ public class EventTrigger : MonoBehaviour
     public Events thisEvent; // varies in different classes
     public Dialogue[] dialogue; // list of dialogues
     public int dialogueIndex;
-
+    public PlayerController player;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+        machine.currentTrigger = this;
+        if (triggerType == TriggerType.EnterTrigger && other.tag == "Player")
         {
-            machine.currentTrigger = this;
-            if (triggerType == TriggerType.EnterTrigger)
+            Debug.Log("Player is enter");
+            if(player.talk == true)
             {
-                thisEvent.TriggerFunction();
+                Debug.Log("Player is talking");
+              thisEvent.TriggerFunction();  
             }
+            
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if (triggerType == TriggerType.ExitTrigger && other.gameObject.tag == "Player")
         {
+            thisEvent.TriggerFunction();
+            //triggerType = TriggerType.ExitTrigger;
+        }
+        if(other.gameObject.tag == "Player")
+        {
+            
             machine.currentTrigger = null;
         }
     }
@@ -60,6 +71,11 @@ public class EventTrigger : MonoBehaviour
         {
             SetThisEvent(type);
         }
+    }
+
+     void Start()
+    {
+        player = GetComponent<PlayerController>();
     }
 
     public void SetThisEvent(EventType eventType)

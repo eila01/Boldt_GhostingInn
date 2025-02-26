@@ -13,7 +13,7 @@ public class ObjectFader : MonoBehaviour
      {
          originalOpacity = mat.color.a;
      }
-    // originalOpacity = Mat.color.a;
+        // originalOpacity = Mat.color.a;
     }
 
     void Update()

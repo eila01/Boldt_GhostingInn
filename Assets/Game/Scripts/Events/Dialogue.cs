@@ -1,4 +1,5 @@
 using System.Collections;
+//using Ink.UnityIntegration;
 using UnityEngine;
 using TMPro;
 [System.Serializable]
@@ -37,21 +38,25 @@ public class Dialogue : Events
             float angle = Vector3.SignedAngle(A, B, camera.transform.up);
             if (angle < 0)
             {
-                rightPointer.SetActive(true);
-                leftPointer.SetActive(false);
+                rightPointer.SetActive(false);
+                leftPointer.SetActive(true);
                 trigger.StartCoroutine(SetPointerDirection(rightPointer.transform, character.transform));
             }
             else
             {
-                rightPointer.SetActive(false);
-                leftPointer.SetActive(true);
+                rightPointer.SetActive(true);
+                leftPointer.SetActive(false);
                 trigger.StartCoroutine(SetPointerDirection(leftPointer.transform, character.transform));
             }
+            
             trigger.StartCoroutine(DisplaySentence(sentenceIndex));
         }
         else if (sentenceIndex < sentences.Length && !displayingCharacters && !closingSentence)
         {
-            trigger.StartCoroutine(DisplaySentence(sentenceIndex)); // display next sentence 
+            // if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+                trigger.StartCoroutine(DisplaySentence(sentenceIndex)); // display next sentence 
+            
+            
         }
         else if (displayingCharacters)
         {
@@ -99,11 +104,10 @@ public class Dialogue : Events
                 yield return null;
             }
         }
-
+        
         sentenceIndex++;
         displayingCharacters = false; // finish sentence
         icon.SetActive(true); // display icon 
-
     }
 
     IEnumerator CloseSentence()
@@ -116,9 +120,10 @@ public class Dialogue : Events
         {
             yield return null;
         }
-        sentenceIndex = 0; // talk to NPC again
+        // sentenceIndex = 0; // talk to NPC again
         if (trigger.dialogueIndex + 1 < trigger.dialogue.Length)
         {
+            
             trigger.dialogueIndex++;
             trigger.SetThisEvent(trigger.type); // set next trigger
             trigger.thisEvent.TriggerFunction();

@@ -10,7 +10,7 @@ public class TVChangeColor : MonoBehaviour
     public Color color;
     public Color secondColor;
     public SpriteRenderer noise;
-
+    [SerializeField] QuestTest quest;
     void Update()
     {
        /*
@@ -90,6 +90,7 @@ public class TVChangeColor : MonoBehaviour
                       noise.enabled = false;
                       material.color = originalColor;
                       tvOn = false;
+                      quest.countDown();
                     //  pointLight.intensity = 0;
                      // timer = 0;
     
@@ -100,7 +101,8 @@ public class TVChangeColor : MonoBehaviour
                       noise.enabled = true;
                       material.color = Color.Lerp(color, secondColor, Time.deltaTime);
                       tvOn = true;
-                    //  pointLight.intensity = lightIntensity;
+                      quest.countUp();
+                      //  pointLight.intensity = lightIntensity;
                       //timer = 0;
                    }
     
