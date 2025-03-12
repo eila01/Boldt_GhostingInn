@@ -24,9 +24,10 @@ public class Dialogue : Events
     [Space]
     public Sentence[] sentences;
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public override void TriggerFunction()
     {
-        // Debug.Log("Triggering Dialogue");
+        Debug.Log("Triggering Dialogue");
         if (sentenceIndex == 0 && !displayingCharacters)
         {
             // lock the player movement
@@ -104,6 +105,7 @@ public class Dialogue : Events
                 yield return null;
             }
         }
+
         
         sentenceIndex++;
         displayingCharacters = false; // finish sentence

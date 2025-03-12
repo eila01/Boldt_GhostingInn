@@ -39,14 +39,14 @@ public class EventTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         machine.currentTrigger = this;
-        if (triggerType == TriggerType.EnterTrigger && other.tag == "Player")
+        if (triggerType == TriggerType.EnterTrigger && other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player is enter");
-            if(player.talk == true)
-            {
-                Debug.Log("Player is talking");
+            //if(player.talk == true)
+            //{
+              //  Debug.Log("Player is talking");
               thisEvent.TriggerFunction();  
-            }
+            //}
             
         }
         
@@ -54,12 +54,12 @@ public class EventTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (triggerType == TriggerType.ExitTrigger && other.gameObject.tag == "Player")
+        if (triggerType == TriggerType.ExitTrigger && other.gameObject.CompareTag("Player"))
         {
             thisEvent.TriggerFunction();
             //triggerType = TriggerType.ExitTrigger;
         }
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.CompareTag("Player"))
         {
             
             machine.currentTrigger = null;

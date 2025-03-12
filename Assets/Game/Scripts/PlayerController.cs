@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
    public bool talk = false;
     
      private RoomCameraSwap roomCameraSwap;
+     
+     public PauseMenu pauseMenu;
+     bool ispaused = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,11 +30,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // restart level
         if (Input.GetKeyDown(KeyCode.R)) { //If you press R
             Application.LoadLevel (Application.loadedLevel);
         }
-           moveInput.x = Input.GetAxis("Horizontal");
-           moveInput.y = Input.GetAxis("Vertical");
+        // pause
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            
+            ispaused = !ispaused;
+            if (ispaused)
+            {
+                pauseMenu.Pause();
+            }
+            else
+            {
+                pauseMenu.Resume();
+            }
+        }
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.y = Input.GetAxis("Vertical");
            
            
         
@@ -60,8 +78,7 @@ public class PlayerController : MonoBehaviour
         { 
            if (currentTrigger.triggerType == EventTrigger.TriggerType.PressButtonInTrigger &&
                currentTrigger.button == EventTrigger.whichButton.AButton && 
-               Input.GetMouseButtonDown(0) && 
-               npcManager.playerEnter == true)
+               Input.GetMouseButtonDown(0))
            {
                Debug.Log("Player is entering");
                talk = true;
@@ -69,8 +86,7 @@ public class PlayerController : MonoBehaviour
            }
 
            if (currentTrigger.triggerType == EventTrigger.TriggerType.EnterTrigger && 
-               Input.GetMouseButtonDown(0) &&
-               npcManager.playerEnter == true)
+               Input.GetMouseButtonDown(0))
            {
                talk = true;
                currentTrigger.thisEvent.TriggerFunction();
