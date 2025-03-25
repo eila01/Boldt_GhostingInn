@@ -35,10 +35,10 @@ public class EventTrigger : MonoBehaviour
     public Events thisEvent; // varies in different classes
     public Dialogue[] dialogue; // list of dialogues
     public int dialogueIndex;
-    public PlayerController player;
+   // public PlayerController player;
     private void OnTriggerEnter(Collider other)
     {
-        machine.currentTrigger = this;
+        //machine.currentTrigger = this;
         if (triggerType == TriggerType.EnterTrigger && other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player is enter");
@@ -62,7 +62,7 @@ public class EventTrigger : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             
-            machine.currentTrigger = null;
+            //machine.currentTrigger = null;
         }
     }
     private void Update()
@@ -71,11 +71,13 @@ public class EventTrigger : MonoBehaviour
         {
             SetThisEvent(type);
         }
+        
+        
     }
 
      void Start()
     {
-        player = GetComponent<PlayerController>();
+        machine = GetComponent<PlayerController>();
     }
 
     public void SetThisEvent(EventType eventType)

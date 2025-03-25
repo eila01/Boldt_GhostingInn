@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 moveInput;
     
-    public EventTrigger currentTrigger;
-    public NPCManager npcManager;
-   public bool talk = false;
+    private EventTrigger currentTrigger;
+    private NPCManager npcManager;
+     public bool talk = false;
     
      private RoomCameraSwap roomCameraSwap;
      
@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-//        roomCameraSwap.rightRotate = false;
+        currentTrigger = gameObject.GetComponent<EventTrigger>();
+        npcManager = GameObject.FindGameObjectWithTag("NPC").GetComponent<NPCManager>();
+
     }
 
     // Update is called once per frame
@@ -74,24 +76,53 @@ public class PlayerController : MonoBehaviour
                rb.linearVelocity = new Vector3(0f, jumpForce, 0f);
            }  
         } 
+        
         if (currentTrigger != null)
         { 
-           if (currentTrigger.triggerType == EventTrigger.TriggerType.PressButtonInTrigger &&
-               currentTrigger.button == EventTrigger.whichButton.AButton && 
-               Input.GetMouseButtonDown(0))
-           {
-               Debug.Log("Player is entering");
-               talk = true;
-               currentTrigger.thisEvent.TriggerFunction();
-           }
+            if (currentTrigger.triggerType == EventTrigger.TriggerType.PressButtonInTrigger &&
+                currentTrigger.button == EventTrigger.whichButton.AButton && 
+                Input.GetMouseButtonDown(0) &&
+                Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Player is entering");
+                talk = true;
+                currentTrigger.thisEvent.TriggerFunction();
+            }
 
-           if (currentTrigger.triggerType == EventTrigger.TriggerType.EnterTrigger && 
-               Input.GetMouseButtonDown(0))
-           {
-               talk = true;
-               currentTrigger.thisEvent.TriggerFunction();
-           }   
+            if (currentTrigger.triggerType == EventTrigger.TriggerType.EnterTrigger && 
+                Input.GetMouseButtonDown(0)&&
+                Input.GetKeyDown(KeyCode.E))
+            {
+                talk = true;
+                currentTrigger.thisEvent.TriggerFunction();
+            }   
         }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == npcManager)
+        {
+            if (currentTrigger != null)
+            { 
+                if (currentTrigger.triggerType == EventTrigger.TriggerType.PressButtonInTrigger &&
+                    currentTrigger.button == EventTrigger.whichButton.AButton && 
+                    Input.GetMouseButtonDown(0) &&
+                    Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Player is entering");
+                    talk = true;
+                    currentTrigger.thisEvent.TriggerFunction();
+                }
+
+                if (currentTrigger.triggerType == EventTrigger.TriggerType.EnterTrigger && 
+                    Input.GetMouseButtonDown(0)&&
+                    Input.GetKeyDown(KeyCode.E))
+                {
+                    talk = true;
+                    currentTrigger.thisEvent.TriggerFunction();
+                }   
+            }
+        }
     }
 }
