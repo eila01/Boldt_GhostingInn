@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Yarn.Unity.Example;
 using Object = UnityEngine.Object;
 
 public class PlayerSwitch : MonoBehaviour

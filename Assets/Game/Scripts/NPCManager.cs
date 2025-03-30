@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class NPCManager : MonoBehaviour
 {
+    public string characterName = "";
+
+    public string talkToNode = "";
     public Rigidbody rb;
     public Transform playerTarget;
     public float speed;
@@ -10,6 +13,7 @@ public class NPCManager : MonoBehaviour
     public bool playerEnter;
     public void followPlayer()
     {
+        
         float dist = Vector3.Distance(transform.position, playerTarget.position);
         // transform.position = Vector3.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
         if (dist <= 2)

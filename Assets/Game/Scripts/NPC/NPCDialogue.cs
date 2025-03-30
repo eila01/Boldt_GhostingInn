@@ -86,8 +86,8 @@ public class NPCDialogue : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             
-                test.hasDialogue = true;
-                test.StartDialogue();
+               // test.hasDialogue = true;
+                //test.StartDialogue();
             
         }
     }

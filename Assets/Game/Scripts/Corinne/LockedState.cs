@@ -1,4 +1,5 @@
 using UnityEngine;
+using Yarn.Unity.Example;
 
 public class LockedState : PlayerController
 {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Yarn.Unity.Example;
 
 public class EventTrigger : MonoBehaviour
 {
@@ -85,7 +86,7 @@ public class EventTrigger : MonoBehaviour
         switch (eventType)
         {
             case EventType.Dialogue:
-                thisEvent = dialogue[dialogueIndex];
+               // thisEvent = dialogue[dialogueIndex];
                 break;
         }
     }

@@ -611,6 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3173718300163208509}
+  - component: {fileID: 2428462582780021253}
   m_Layer: 0
   m_Name: Dialogue
   m_TagString: Untagged
@@ -634,6 +635,29 @@ Transform:
   - {fileID: 3981156237415655622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2428462582780021253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278852994513966234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1a62fc2db94a34f94d7df7db93fc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  camera: {fileID: 0}
+  leftorRightObject: {fileID: 0}
+  leftPointer: {fileID: 0}
+  rightPointer: {fileID: 0}
+  icon: {fileID: 0}
+  trigger: {fileID: 0}
+  textBoxAnimator: {fileID: 0}
+  textBox: {fileID: 0}
+  typingSpeed: 0.2
+  isDialogueActive: 0
 --- !u!1 &3590150276771552195
 GameObject:
   m_ObjectHideFlags: 0
