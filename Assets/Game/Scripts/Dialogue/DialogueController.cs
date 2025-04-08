@@ -9,13 +9,14 @@ public class DialogueController : MonoBehaviour
     {
         if (isDialogueActive && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)))  // Left-click to progress
         {
-            Debug.unityLogger.Log("Dialogue Active");
+            Debug.Log("Dialogue Active in Dialogue Controller");
             dialogueRunner.Dialogue.Continue();  // This will continue to the next line
         }
     }
 
     public void StartDialogue(string startingNode)
     {
+        Debug.Log("Starting Dialogue in Dialogue Controller");
         dialogueRunner.StartDialogue(startingNode);
         isDialogueActive = true;
     }

@@ -128,25 +128,7 @@ public class PlayerController : MonoBehaviour
             return;
     //    }
         /*
-        if (currentTrigger != null)
-        { 
-            if (currentTrigger.triggerType == EventTrigger.TriggerType.PressButtonInTrigger &&
-                currentTrigger.button == EventTrigger.whichButton.AButton && 
-                Input.GetMouseButtonDown(0) &&
-                Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Player press key");
-                talk = true;
-                currentTrigger.thisEvent.TriggerFunction();
-            }
-
-            if (currentTrigger.triggerType == EventTrigger.TriggerType.EnterTrigger && 
-                Input.GetMouseButtonDown(0)&&
-                Input.GetKeyDown(KeyCode.E))
-            {
-                talk = true;
-                currentTrigger.thisEvent.TriggerFunction();
-            }   
+          
         }*/
     }
 
