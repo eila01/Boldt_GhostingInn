@@ -10,6 +10,7 @@ public class QuestTest : MonoBehaviour
     public GameObject npcTransform;
     public Transform fleePosition;
     private bool atPosition = false;
+    public ObjectiveManager objectiveManager;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -23,8 +24,8 @@ public class QuestTest : MonoBehaviour
         if (currentPossession >= 1)
         {
             npcManager.transform.position = Vector3.MoveTowards(npcManager.transform.position,fleePosition.position, speed * Time.deltaTime);
-        
-        
+            objectiveManager.TalkToRoy();
+
         }
 
         
