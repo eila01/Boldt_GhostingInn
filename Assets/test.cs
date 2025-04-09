@@ -11,10 +11,11 @@ namespace Yarn.Unity
     {
         public DialogueRunner dialogueRunner;  // Drag and drop your DialogueRunner here
         [SerializeField] String startNodeName = "";
-        public DialogueController dialogueController;
+        // public DialogueController dialogueController;
         private int repeating = 1;
         [SerializeField] bool isRepeatable = false;
         public Outline outline;
+        public LineView lineView;
        // [SerializeField] Sprite interactSprite;
         void Start()
         {
@@ -30,21 +31,31 @@ namespace Yarn.Unity
             {
                Debug.Log("Test Collider: " + other.gameObject.name);
                outline.enabled = true;
-                if (dialogueRunner != null && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && repeating > 0)
+                if (dialogueRunner != null && (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) && repeating > 0)
                 {
-                     // Start the dialogue from the node in the Yarn script
-                     Debug.Log(dialogueRunner.name + " In Test");
-                     dialogueRunner.StartDialogue(startNodeName);
-                     if (isRepeatable)
-                     {
-                         repeating = 1;
-                        // outline.enabled = false;
-                     }
-                     else
-                     {
-                         repeating = 0;
-                         // outline.enabled = false;
-                     }
+                    if (!dialogueRunner.IsDialogueRunning)
+                    {
+
+
+                        // Start the dialogue from the node in the Yarn script
+                        Debug.Log(dialogueRunner.name + " In Test");
+                        dialogueRunner.StartDialogue(startNodeName);
+                        if (isRepeatable)
+                        {
+                            repeating = 1;
+
+                        }
+                        else
+                        {
+                            repeating = 0;
+
+                        }
+                    }
+
+                    if (dialogueRunner.IsDialogueRunning)
+                    {
+                        lineView.OnContinueClicked();
+                    }
                 }
                 
                

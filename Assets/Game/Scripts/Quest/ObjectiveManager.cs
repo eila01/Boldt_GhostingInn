@@ -22,7 +22,7 @@ public class ObjectiveManager : MonoBehaviour
 
    public void FindRoy()
     {
-        _objectiveText.text = "Find Roy";
+        _objectiveText.text = "Find Roy"; 
     }
 
    public void TalkToRoy()

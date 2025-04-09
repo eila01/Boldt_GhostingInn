@@ -8,6 +8,7 @@ using Image = UnityEngine.UI.Image;
 public class CutsceneTest : MonoBehaviour
 {
     public GameObject player;
+    public GameObject mainCamera;
     public Camera cutsceneCam;
     public Image fadeImage;
     public float fadeDuration;
@@ -17,10 +18,13 @@ public class CutsceneTest : MonoBehaviour
     private bool playCutsceneOnce = false;
     void Start()
     {
-        cutsceneCam.gameObject.SetActive(false);
+        
+        cutsceneCam.gameObject.SetActive(true);
         Color color = fadeImage.color;
         color.a = 0;
         fadeImage.color = color;
+        mainCamera.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +35,7 @@ public class CutsceneTest : MonoBehaviour
             StartCoroutine(StopCutscene());
             playCutsceneOnce = true;
             Debug.Log("play cutscene: " + playCutsceneOnce);
+            
             
         }
     }
@@ -57,26 +62,29 @@ public class CutsceneTest : MonoBehaviour
     }
     IEnumerator FadeInAndOut()
     {
-        yield return StartCoroutine(FadeImage(fadeImage, 0, 1f, fadeDuration));
+        //yield return StartCoroutine(FadeImage(fadeImage, 0, 1f, fadeDuration));
         yield return new WaitForSeconds(1);
         player.SetActive(false);
         SetAllObjectsActive(false);
         cutsceneCam.gameObject.SetActive(true);
-        yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
+        cutsceneObj.SetActive(true);
+        //yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
 
     }
     IEnumerator StopCutscene()
     {
-        yield return new WaitForSeconds(9);
+        yield return new WaitForSeconds(8);
         yield return StartCoroutine(FadeImage(fadeImage, 0, 1f, fadeDuration));
         yield return new WaitForSeconds(1);
         player.SetActive(true);
         SetAllObjectsActive(true);
         cutsceneCam.gameObject.SetActive(false);
+        mainCamera.gameObject.SetActive(true);
        // cutsceneAnimator.enabled = false;
        cutsceneObj.SetActive(false);
+       
         yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
-
+        
     }
 
     IEnumerator FadeImage(Image image, float startOpacity, float targetOpacity, float duration)
