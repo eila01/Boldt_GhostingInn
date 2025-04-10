@@ -11,10 +11,11 @@ public class PlacePlayer : MonoBehaviour
    [SerializeField] GameObject player;
    [SerializeField] GameObject flute;
    public bool haveFluteFollowing = false;
-
+    private FluteController fluteController;
    private void Start()
    {
        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+       fluteController = flute.GetComponent<FluteController>();
             gameController.startGame = false;
    }
     
@@ -26,6 +27,10 @@ public class PlacePlayer : MonoBehaviour
          //player.gameObject.SetActive(true);
          player.transform.position = placePosition;
          pushPlayer();
+         if (fluteController.followingPlayer == true)
+         {
+             Instantiate(flute, placePosition, Quaternion.identity);
+         }
         
         }else if (gameController.startGame == false)
         {

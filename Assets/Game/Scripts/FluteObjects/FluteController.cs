@@ -22,6 +22,7 @@ public class FluteController : MonoBehaviour
 
     public Transform playerTarget;
     public RoomCameraSwap roomCameraSwap;
+    public bool followingPlayer;
     void Start()
     {
         //roomCameraSwap = roomCameraSwap.GetComponent<RoomCameraSwap>();
@@ -56,7 +57,7 @@ public class FluteController : MonoBehaviour
         if (_isEnable)
         {
 
-            
+            followingPlayer = false;
             // move the body
             
             float x = Input.GetAxis("Horizontal");
@@ -107,6 +108,7 @@ public class FluteController : MonoBehaviour
 
     public void followPlayer()
     {
+        followingPlayer = true;
         float dist = Vector3.Distance(transform.position, playerTarget.position);
         // transform.position = Vector3.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
         if (dist <= 2)

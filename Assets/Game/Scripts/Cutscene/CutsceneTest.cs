@@ -4,7 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
-
+/*
+ * NOTE: Try to Implement PlayerPrefs
+ * Cutscenes needs to be played only once
+ */
 public class CutsceneTest : MonoBehaviour
 {
     public GameObject player;
@@ -19,12 +22,26 @@ public class CutsceneTest : MonoBehaviour
     void Start()
     {
         
-        cutsceneCam.gameObject.SetActive(true);
-        Color color = fadeImage.color;
-        color.a = 0;
-        fadeImage.color = color;
-        mainCamera.gameObject.SetActive(false);
-        player.gameObject.SetActive(false);
+        
+        if (!playCutsceneOnce)
+        {
+            cutsceneCam.gameObject.SetActive(true);
+            Color color = fadeImage.color;
+            color.a = 0;
+            fadeImage.color = color;
+            mainCamera.gameObject.SetActive(false);
+            player.gameObject.SetActive(false);
+            // playCutsceneOnce = PlayerPrefs.GetInt("CutscenePlayed", 0) == 1;
+        }
+        else
+        {
+            cutsceneCam.gameObject.SetActive(false);
+            Color color = fadeImage.color;
+            color.a = 0;
+            fadeImage.color = color;
+            mainCamera.gameObject.SetActive(true);
+            player.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +51,7 @@ public class CutsceneTest : MonoBehaviour
             StartCoroutine(FadeInAndOut());
             StartCoroutine(StopCutscene());
             playCutsceneOnce = true;
+            
             Debug.Log("play cutscene: " + playCutsceneOnce);
             
             
@@ -84,7 +102,9 @@ public class CutsceneTest : MonoBehaviour
        cutsceneObj.SetActive(false);
        
         yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
-        
+        // Save the cutscene state
+       // PlayerPrefs.SetInt("CutscenePlayed", 1);
+        // PlayerPrefs.Save(); // call immediately
     }
 
     IEnumerator FadeImage(Image image, float startOpacity, float targetOpacity, float duration)

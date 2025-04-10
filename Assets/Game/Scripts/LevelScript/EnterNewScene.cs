@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity.Example;
+
 public class EnterNewScene : MonoBehaviour
 {
     [SerializeField] string sceneName;
+    [SerializeField] GameObject spriteInteract;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +21,30 @@ public class EnterNewScene : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(sceneName);
+            
+            spriteInteract.SetActive(true);
+          //  SceneManager.LoadScene(sceneName);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player" || other.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player" || other.gameObject.tag == "Player")
+        {
+            spriteInteract.SetActive(false);
         }
     }
 }
