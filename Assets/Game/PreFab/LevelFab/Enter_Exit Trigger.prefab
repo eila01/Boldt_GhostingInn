@@ -66,4 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9044d3656ea6d844b92d8b936b29f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Scene01_CCI_Outside
+  sceneName: Scene01_CCI_Outside_Dup
+  spriteInteract: {fileID: 0}

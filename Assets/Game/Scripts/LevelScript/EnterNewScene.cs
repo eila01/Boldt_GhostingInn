@@ -35,7 +35,9 @@ public class EnterNewScene : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
             {
+                Debug.Log("loaded scene");
                 SceneManager.LoadScene(sceneName);
+                
             }
         }
     }

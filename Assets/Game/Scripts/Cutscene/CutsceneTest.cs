@@ -1,4 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,27 +18,31 @@ public class CutsceneTest : MonoBehaviour
    // public Animator cutsceneAnimator;
    public GameObject cutsceneObj;
    public GameObject[] noncutsceneObj;
-    private bool playCutsceneOnce = false;
+    private bool playCutsceneOnce;
+
+    private void Awake()
+    {
+      playCutsceneOnce = PlayerPrefs.GetInt("CutscenePlayed", 0) == 0;
+    }
+
     void Start()
     {
         
+        Color color = fadeImage.color; 
+        color.a = 0;
+        fadeImage.color = color;
         
         if (!playCutsceneOnce)
         {
             cutsceneCam.gameObject.SetActive(true);
-            Color color = fadeImage.color;
-            color.a = 0;
-            fadeImage.color = color;
+            
             mainCamera.gameObject.SetActive(false);
             player.gameObject.SetActive(false);
-            // playCutsceneOnce = PlayerPrefs.GetInt("CutscenePlayed", 0) == 1;
+           // playCutsceneOnce = PlayerPrefs.GetInt("CutscenePlayed", 0) == 1;
         }
-        else
+        else if (PlayerPrefs.GetInt("CutscenePlayed", 1) == 1)
         {
             cutsceneCam.gameObject.SetActive(false);
-            Color color = fadeImage.color;
-            color.a = 0;
-            fadeImage.color = color;
             mainCamera.gameObject.SetActive(true);
             player.gameObject.SetActive(true);
         }
@@ -48,10 +52,13 @@ public class CutsceneTest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !playCutsceneOnce)
         {
+            
             StartCoroutine(FadeInAndOut());
             StartCoroutine(StopCutscene());
             playCutsceneOnce = true;
-            
+            // Save the cutscene state
+            PlayerPrefs.SetInt("CutscenePlayed", 1);
+            PlayerPrefs.Save(); // call immediately
             Debug.Log("play cutscene: " + playCutsceneOnce);
             
             
@@ -86,6 +93,7 @@ public class CutsceneTest : MonoBehaviour
         SetAllObjectsActive(false);
         cutsceneCam.gameObject.SetActive(true);
         cutsceneObj.SetActive(true);
+      //  playCutsceneOnce = true;
         //yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
 
     }
@@ -98,13 +106,13 @@ public class CutsceneTest : MonoBehaviour
         SetAllObjectsActive(true);
         cutsceneCam.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
-       // cutsceneAnimator.enabled = false;
        cutsceneObj.SetActive(false);
        
         yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
         // Save the cutscene state
        // PlayerPrefs.SetInt("CutscenePlayed", 1);
-        // PlayerPrefs.Save(); // call immediately
+       // PlayerPrefs.Save(); // call immediately
+        // Debug.Log("play cutscene : " + playCutsceneOnce);
     }
 
     IEnumerator FadeImage(Image image, float startOpacity, float targetOpacity, float duration)
