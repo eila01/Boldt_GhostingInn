@@ -11,6 +11,7 @@ public class TVChangeColor : MonoBehaviour
     public Color secondColor;
     public SpriteRenderer noise;
     [SerializeField] QuestTest quest;
+    
     void Update()
     {
        /*
@@ -40,6 +41,8 @@ public class TVChangeColor : MonoBehaviour
        [SerializeField] public FluteController activeFlute;
        //[SerializeField] float lightIntensity;
     
+       [SerializeField] private AudioClip interactSoundClip;
+       // [SerializeField] private AudioClip tvSoundClip;
        void Start()
        {
           noise.enabled = false;
@@ -74,17 +77,23 @@ public class TVChangeColor : MonoBehaviour
              tvOffEvent.Invoke();
           }
        }
-    
+
+       private void OnTriggerEnter(Collider other)
+       {
+          if (other.gameObject.tag == "Flute" && activeFlute._isEnable)
+          {
+             SoundFXManager.instance.playSoundFXClip(interactSoundClip, transform, 1f);
+              textMesh.text = "E";
+               outline.enabled = true;
+          }
+       }
+
        private void OnTriggerStay(Collider collision)
        {
-          {
-             if (collision.gameObject.tag == "Flute" && activeFlute._isEnable)
+          
+             if (collision.gameObject.tag == "Flute" && activeFlute._isEnable && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)))
              {
-                textMesh.text = "E";
-                outline.enabled = true;
-                if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
-                {
-                   
+               
                    if (tvOn == true)
                    {
                       noise.enabled = false;
@@ -98,6 +107,7 @@ public class TVChangeColor : MonoBehaviour
     
                    else if (tvOn == false)
                    {
+                     // SoundFXManager.instance.playSoundFXClip(tvSoundClip, transform, 0.05f);
                       noise.enabled = true;
                       material.color = Color.Lerp(color, secondColor, Time.deltaTime);
                       tvOn = true;
@@ -107,11 +117,11 @@ public class TVChangeColor : MonoBehaviour
                    }
     
     
-                }
+                
     
              }
              
-          }
+          
        }
     
     

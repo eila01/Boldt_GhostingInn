@@ -1,8 +1,21 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     private ObjectFader _fader;
+    public CinemachineVirtualCamera[] allVirtualCams;
+
+    public void SwitchToCamera(string cameraName)
+    {
+        foreach (var vcam in allVirtualCams)
+        {
+            if (vcam.name == cameraName)
+                vcam.Priority = 10; // Make active
+            else
+                vcam.Priority = 0; // Lower priority
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

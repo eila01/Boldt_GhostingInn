@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.SceneManagement;
@@ -22,15 +23,20 @@ public class GameController : MonoBehaviour
     }
     
     // Start Game
-    public void StartGame()
-    {
-        _mainMenuCamera.enabled = false;
-        
-        startGame = true;
-        mainMenu.SetActive(false);
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Game/Scene/Outside/Scene01_CCI_Outside");
-    }
+     private float loadScene = 0;
+     public void StartGame()
+     {
+         Debug.Log("Attempting to load Scene01_CCI_Outside");
+
+         _mainMenuCamera.enabled = false;
+         startGame = true;
+         mainMenu.SetActive(false);
+         Time.timeScale = 1;
+
+         SceneManager.LoadScene("Scene01_CCI_Outside"); // Use scene name, not path
+     }
+    
+    
 
     public void Awake()
     {

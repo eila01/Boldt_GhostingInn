@@ -7,6 +7,7 @@ public class EnterNewScene : MonoBehaviour
 {
     [SerializeField] string sceneName;
     [SerializeField] GameObject spriteInteract;
+    [SerializeField] private AudioClip interactSoundClip;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,7 +26,9 @@ public class EnterNewScene : MonoBehaviour
         {
             
             spriteInteract.SetActive(true);
-          //  SceneManager.LoadScene(sceneName);
+            // player SFX
+            SoundFXManager.instance.playSoundFXClip(interactSoundClip, transform, 1f);
+            //  SceneManager.LoadScene(sceneName);
         }
     }
 

@@ -1,33 +1,99 @@
 ﻿title: InsideCedarCreek
 tags:
 ---
-
-===
-title: FirstEnterInn
-tags:
----
-Clyde: Corinne
+Clyde: Hey Corinne!
 // Camera Look over to Clyde
 // Corinne moves up to Clyde
-Corinne: Good morning Clyde, how was the night shift, have heard there was a big group came in last night.
-Clyde: Yeah. Vivianne said that last night a group of teens checked in claming to be 'paranormal hunters' or whatnot. They been bugging Vivianne about any information about the ghosts and the ghost haunting. 
-Corinne: Great...
-Clyde: I dont know why those ghost enthusiast can't take a hint that ghost haunting just happen out just randomly. I mean no one can  know when a ghost haunting would happen and we especially can't see them right.
-Corinne: Ha, yeah definitely...
-Clyde: Anyway let head up to the front desk to start this long day.
+<<move "Corinne" 4.94 0.4363544 15 2>>
+//Corinne: Good morning Clyde, how was the night shift, have heard there was a big group came in last night.
+//Clyde: Yeah. Vivianne said that last night a group of teens checked in claiming to be 'paranormal hunters' or whatnot. They been bugging Vivianne about any information about the ghosts and the ghost haunting. 
+//Corinne: Great...
+//Clyde: I dont know why those ghost enthusiast can't take a hint that ghost haunting just happen out just randomly. I mean no one can  know when a ghost haunting would happen and we especially can't see them right.
+//Corinne: Ha, yeah definitely...
+//Clyde: Anyway let head up to the front desk to start this long day.
 // fade in and out to TheIncitingIncident
+
+Corinne: Good morning Clyde, how's the the inn looking right now
+Clyde: Well the morning started off well until this one guest came in and weird paranormal stuff was happening.
+Clyde: Like some the lights were flickering on and off.
+Clyde: Almost like a ghost was haunting him.
+Corinne: Oh good...
+Corinne: Do you know what room he check in?
+Clyde: Room 121. I do hope it is really not another ghost activity. The last one nearly burnt out all our light bulbs.
+
 ===
 title: TheIncitingIncident
 tags:
 ---
+<<fadeOut 1.5>>
+<<move "Corinne" -0.56 0.4363544 16.04 0.5>>
+<<move "Clyde" -4.49 0.4363544 15.32 0.5>>
+<<fadeIn 1.5>>
+
 // Guest coming in and out of inn
 // Corinne is checking the second to last guest
+
 Corinne: Have a great stay!
 // Guest leaves
 // Flutes floats in
 Flute: Hey Hey! What's up Corinne!
 Corinne: ...
-Flute: Not this again. Look, so far there is no guest or anyone  
+Flute: Oh, right.  
+Flute: Hmmmm    
+Flute: Hey, at least you don't mind me talking your ear would ya.
+Corinne: Not now Flute
+Clyde: Hm? Said somehthing Corinne?
+Corinne: Um! I was uh muttering to myself, you know.
+Clyde: Nah It's all right, I totally get it
+Corinne: ............................
+// Roy walks in
+Corinne: Hello, Welcome to Cedar Creek Inn
+UNKNOWN: Ah, this place sure has not change one bit
+Corinne: Well it-
+UNKNOWN: I mean, it still has the same wooden decor.
+Corinne: Ah, you must be Mr.Elmore then.
+Roy: Roy Elmore, and I'm glad you care to remember a recurring guest
+Flute: Ugh not this guy again.
+Corinne: Ok let met check in room 121 for you and let me get your keys-
+// A ghost is floating behind Roy 
+Roy: Yes? Room keys?
+Corinne: Er...
+UNKNOWN: Roy Elmore!!!!
+UNKNOWN: You made you last mistake is showing your face around here!
+UNKNOWN: I have waiting Twenty Years for you to feel that same pain I have!
+Clyde: Um Corinne?
+Roy: You know I don't have all day to wait around while you are staring off to space.
+Corinne: Uh, um I think there's a ghost who wants to murder you.
+Roy: What? What kind of prank is this?
+Corinne: No no, its just there is this weird feeling like there is someone wanting to take revenge?
+UNKNOWN: I'm going to kill you Roy!!
+Flute: Yep. That does not look good.
+Roy: Now you just making things up. Can you just give me my room keys.
+Corinne: Right...Here's keys to room 121, first floor and first door to your right.
+Roy: Hmph.
+// Roy leaves with Sherry following him
+Corinne: That is not good.
+UNKNOWN: Yes I second to that
+Clyde: Oh! Elzy!
+Elzy: Hmm, Corinne could you come over here for a moment?
+// fade to them standing and talking 
+Corinne: Um, you called?
+Elzy: Did I hear that correctly? That there is a ghost that is going to kill a guest.
+Elzy: And not any guest, but one of our recurring guest?
+Corinne: Yes. I didn't see the ghost before so I-
+Elzy: Well leave Clyde to the front while I entrust to you to fix that problem. 
+Corinne: Ok...but I-
+Elzy: Welp! Good talk! Good luck with that ghost business.
+// Elzy leaves
+Corinne: Great...
+Flute: Hey, at least you don't have to work up front the whole day.
+Corinne: And spend a whole day trying to convince get a murderous ghost to leave.
+Flute: Well judging from that revenge call, I don't think it will be that easy.
+Corinne: Well at least I have you to help me.
+Flute: Yeah, yeah. Though You know I also don;t like dealing with those murderous types.
+Corinne: Same here, but I don't want have Elzy get on my back if the ghost does manage to kill Roy.
+Corinne: But lets quickly get over there before anything bad happens.
+Flute: Lead the way!  
 ===
 title: UnableToLeave
 tags:
@@ -46,4 +112,55 @@ Corinne: And I know Elzy is going to leave me to pay for the damage.
 Flute: Ugh...fine
 Flute: But after this you definitely owe me something for this. 
 
+===
+title: KnockingRoyDoor
+tags:
+---
+Corinne: Well here's his room.
+Flute: Convenient.
+// knocking sounds
+Corinne: Mr.Elmore!
+// more knocking
+Corinne: Mr. Elmore! Can we talk?
+// nothing
+Corinne:....
+Corinne: He's not responding.
+Flute: Definitely a bad sign.
+Corinne: Ok. I did what I can do out here, it's your turn to get in there.
+Flute: Don't you have accesses to all the rooms here?
+Corinne: I am not going in while a guest is still there and especially when I am techniaclly still working.
+Flute: Sigh
+Flute: Fine. But what happens if the ghost doesn't want to listen.
+Corinne: Then try to get Roy out here. Scare him with lights or sounds, or anything. I can maybe try to get him to listen.
+Flute: Here I go then. 
+===
+title: FluteConvoWithSherry01
+tags:
+---
+UNKNOWN: What are you doing? 
+Flute: Hey can we just have a chat? A calm less murdery chat?
+UNKNOWN: No
+Flute: Oh come on!
+Flute: I know that he's alive and we are not. I get that he may have done or said somethings that is worth revenge.
+UNKNOWN: He has done the most inconceivable thing ever! And its something that I can never forgive or let go. So I am going to ask you to get out of my way.
+Flute: (Great. Can't talk them out of it.) 
+Flute: (I guess I will have to make this room more a mess to get this clueless guy out and hopefully Corinne can get him to leave for good.) 
+===
+title: RoyAnnoyanceOutside
+tags:
+---
+Roy: Ah! Excuse me, this room is definitely not up to code!
+Corinne: Sir, I apologize for anything that may happen, but I need to warn-
+Roy: I will not tolerate with poor service I will tell you! 
+Corinne: Mr.Elmore there is a ghost that is trying to murder you!
+Roy: Not this again. I really don't take kindly to jokes
+Corinne: I can help you fix this problem with the room and paranormal stuff if maybe you can help me figure out why-
+Roy: Tell me where Elzy is. I would rather speak to a manager about this poor room quality.
+Corinne: Wait-
+// Roy left as Sherry follow suit
+Corinne: God hate dealing client like him
+Flute: Add to that list on why I hate vengeful ghost, they aren't friendly bunch.
+Corinne: So I take it that talking to the ghost gets us nowhere.
+Flute: Well at least Roy is at least smart enough to leave when there's ghosts messing with him.
+ 
 ===

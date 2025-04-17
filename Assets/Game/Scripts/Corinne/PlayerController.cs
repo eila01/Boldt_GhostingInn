@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround, whatIsWall, whatIsCeiling;
     public Transform groundPoint;
     private bool isGrounded;
+    public static bool canMove;
     
     private Vector2 moveInput;
     
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        canMove = true;
         currentTrigger = gameObject.GetComponent<EventTrigger>();
         npcManager = GameObject.FindGameObjectWithTag("NPC").GetComponent<NPCManager>();
         dialogueInput = FindObjectOfType<DialogueAdvanceInput>();
@@ -94,6 +96,13 @@ public class PlayerController : MonoBehaviour
                 pauseMenu.Resume();
             }
         }
+
+        if (!canMove)
+        {
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            return;
+        }
+        
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
            

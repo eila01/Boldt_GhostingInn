@@ -28,7 +28,7 @@ public class NPCManager : MonoBehaviour
     {
         if (isGhost == true)
         {
-            transform.position = new Vector3(startPosX, Mathf.Sin(Time.time * freq) * amp + startPosY, startPosZ);
+           // transform.position = new Vector3(startPosX, Mathf.Sin(Time.time * freq) * amp + startPosY, startPosZ);
         }
          //GhostFloatAnim();
     }

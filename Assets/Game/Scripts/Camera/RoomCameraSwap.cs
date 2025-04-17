@@ -14,10 +14,12 @@ public class RoomCameraSwap : MonoBehaviour
    public GameObject npc;
 
   [SerializeField] public bool rightRotate;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+  private Quaternion originalPlayerRotation;
+    
     void Start()
     {
         //switchToCamera(primaryCamera);
+        originalPlayerRotation = corinne.transform.localRotation;
         rightRotate = false;
         npc.transform.Rotate(0, -90, 0);
     }
@@ -63,7 +65,8 @@ public class RoomCameraSwap : MonoBehaviour
             (playerSwitch.player1Active == true))
         {
             rightRotate = false;
-            corinne.transform.Rotate(0, 90, 0);
+            corinne.transform.rotation = originalPlayerRotation;
+            //corinne.transform.Rotate(0, 90, 0);
             npc.transform.Rotate(0, 90, 0);
             switchToCamera(primaryCamera);
             primaryCamera.Follow = corinne.transform;
@@ -74,11 +77,24 @@ public class RoomCameraSwap : MonoBehaviour
                  (playerSwitch.player1Active == false))
         {
             rightRotate = false;
-            flute.transform.Rotate(0, 90, 0);
+            flute.transform.rotation = originalPlayerRotation;
             npc.transform.Rotate(0, 90, 0);
             switchToCamera(primaryCamera);
             primaryCamera.Follow = flute.transform;
             primaryCamera.LookAt = flute.transform;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (playerSwitch.player1Active == true)
+        {
+            rightRotate = false;
+            corinne.transform.rotation = originalPlayerRotation;
+            flute.transform.rotation = originalPlayerRotation;
+            switchToCamera(primaryCamera);
+            primaryCamera.Follow = corinne.transform;
+            primaryCamera.LookAt = corinne.transform;
         }
     }
 

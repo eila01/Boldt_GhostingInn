@@ -14,6 +14,8 @@ public class PlayerSwitch : MonoBehaviour
 
     [SerializeField] public FluteController activeFlute;
     [SerializeField] private CameraSwitch cameraSwitch;
+    [SerializeField] private AudioClip interactSoundClip;
+
     private void Start()
     {
         activeFlute = GameObject.Find("Flute").GetComponent<FluteController>();
@@ -60,6 +62,8 @@ public class PlayerSwitch : MonoBehaviour
             cameraSwitch.Manager = 0;
             cameraSwitch.ManageCamera();
         }
+        SoundFXManager.instance.playSoundFXClip(interactSoundClip, transform, 0.05f);
+
     }
     public void APressedFunction()
     {

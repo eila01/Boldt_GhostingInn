@@ -2,6 +2,8 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
+using Yarn.Unity.Example;
+
 namespace Yarn.Unity
 {
 
@@ -17,49 +19,61 @@ namespace Yarn.Unity
         public Outline outline;
         public LineView lineView;
        // [SerializeField] Sprite interactSprite;
-        void Start()
-        {
-           
-           // interactSprite = Resources.Load<Sprite>("Interact");
-           // dialogueRunner = gameObject.GetComponent<DialogueRunner>();
-             outline.enabled = false;
-        }
+       [SerializeField] AudioClip interactSoundClip;
+       private bool hasPlayed = false; 
+       void Start()
+       {
+           dialogueRunner = FindObjectOfType<DialogueRunner>();
+           outline.enabled = false;
+           dialogueRunner.onDialogueStart.AddListener(() => PlayerController.canMove = false);
+           dialogueRunner.onDialogueComplete.AddListener(() => PlayerController.canMove = true);
+           // This listener waits until this dialogue finishes
+           dialogueRunner.onDialogueComplete.AddListener(() =>
+           {
+               if (!isRepeatable && hasPlayed)
+               {
+                   Debug.Log("Dialogue completed and is not repeatable.");
+                   // Prevent replaying
+                   hasPlayed = true;
+               }
+           });
+       }
+
+       private void OnTriggerEnter(Collider other)
+       {
+           if ((other.CompareTag("Player") || other.gameObject.CompareTag("Player")) && !hasPlayed){
+               SoundFXManager.instance.playSoundFXClip(interactSoundClip, transform, 1f);
+                
+       }
+    }
+
         private void OnTriggerStay(Collider other)
         {
+            
             // Check if the player enters the trigger zone
             if ((other.CompareTag("Player") || other.gameObject.CompareTag("Player")))
             {
                Debug.Log("Test Collider: " + other.gameObject.name);
+              if(isRepeatable)
                outline.enabled = true;
-                if (dialogueRunner != null && (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) && repeating > 0)
-                {
-                    if (!dialogueRunner.IsDialogueRunning)
-                    {
+               // If the dialogue hasn't been played yet or it's repeatable
+               if (!dialogueRunner.IsDialogueRunning &&
+                   (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) &&
+                   (isRepeatable || !hasPlayed))
+               {
+                   
+                   Debug.Log(dialogueRunner.name + " In Test — Starting node: " + startNodeName);
+                   dialogueRunner.StartDialogue(startNodeName);
+                   
+                   hasPlayed = true;
+               }
 
-
-                        // Start the dialogue from the node in the Yarn script
-                        Debug.Log(dialogueRunner.name + " In Test");
-                        dialogueRunner.StartDialogue(startNodeName);
-                        if (isRepeatable)
-                        {
-                            repeating = 1;
-
-                        }
-                        else
-                        {
-                            repeating = 0;
-
-                        }
-                    }
-
-                    if (dialogueRunner.IsDialogueRunning)
-                    {
-                        lineView.OnContinueClicked();
-                    }
-                }
-                
-               
-                //StartDialogue();
+               // Progress the dialogue manually
+               if (dialogueRunner.IsDialogueRunning &&
+                   (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)))
+               {
+                   lineView.OnContinueClicked();
+               }
             }
         }
 

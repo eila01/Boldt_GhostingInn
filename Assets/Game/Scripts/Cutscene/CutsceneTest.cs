@@ -18,12 +18,9 @@ public class CutsceneTest : MonoBehaviour
    // public Animator cutsceneAnimator;
    public GameObject cutsceneObj;
    public GameObject[] noncutsceneObj;
-    private bool playCutsceneOnce;
-
-    private void Awake()
-    {
-      playCutsceneOnce = PlayerPrefs.GetInt("CutscenePlayed", 0) == 0;
-    }
+    private bool playCutsceneOnce = false;
+[SerializeField] private AudioClip audioClip;
+    
 
     void Start()
     {
@@ -101,13 +98,16 @@ public class CutsceneTest : MonoBehaviour
     {
         yield return new WaitForSeconds(8);
         yield return StartCoroutine(FadeImage(fadeImage, 0, 1f, fadeDuration));
+        yield return new WaitForSeconds(0.5f);
+        SoundFXManager.instance.playSoundFXClip(audioClip, transform, 1f); // play any sfx
         yield return new WaitForSeconds(1);
+         
         player.SetActive(true);
         SetAllObjectsActive(true);
         cutsceneCam.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
        cutsceneObj.SetActive(false);
-       
+      
         yield return StartCoroutine(FadeImage(fadeImage, 1, 0, fadeDuration));
         // Save the cutscene state
        // PlayerPrefs.SetInt("CutscenePlayed", 1);

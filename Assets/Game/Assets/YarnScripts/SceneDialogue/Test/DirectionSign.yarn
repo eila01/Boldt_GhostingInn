@@ -5,3 +5,58 @@ Cedarwood Building ↑
 Cougar Trail →
 Creekside Building ←
 ===
+title: CougarTrailSign01
+tags:
+---
+Cougar Trail - 
+Cedar Creek River             1.3 m
+Lakeside Campground       4.2 m
+Corinne: It's the only trail that leads down to the river, and conveniently to the nearby campground.
+Corinne: Weather like this,  it is about this time of the year the inn would be getting some guest
+===
+title: EncounterSherry01
+---
+Corinne: Hmmm?
+// Corinne Looks over Sherry (a ghost that mearly haunts the inn)
+Corinne: (Never seen that ghost before.)
+Corinne: ...
+Corinne: ...um  you looking for something?
+UNKNOWN: ...
+<<wait 1.5>>
+//Sherry Looks over 
+// plays thinking sprite animation
+// Sherry floats through the inn
+<<move "Sherry" 0 0 115.6 6>>
+<<delete_object "Sherry">>
+Corinne: Hopefully the ghosts today will be more calm than last week.
+Corinne: sigh
+Corinne: Well might as well get inside. 
+===
+title: TwoGhostCovo01
+---
+// RALPH 
+Ralph: Ahh~ 
+Ralph: It's good to be back. This place sure never changes.
+// JOHAN (Ghost NPC)
+Johan: Eh, I don't think a 6 months is that long, especially for anything for a place like this to drastically change.
+// RALPH 
+Ralph: But you never know! I practically revisit Europe and it has changed tenfold since the last time I visited.
+Ralph: Rivers here are definitely has gotten smaller within these last 3 decades.
+// JOHAN
+Johan: Speaking of which, how was your trip to Norway
+// RALPH 
+Ralph: Still breathtaking as always
+Ralph: Me and the Hiking group did a whole back to back, coast to coast, peak to peak
+Ralph: Ahh good times.
+Ralph: Oh though it did remind me of the time-
+// JOHAN
+Johan: Uh, is it me or that person looks like they are listening to us
+// RALPH turns notice Corinne and turns back
+Ralph: Oh that's Corinne, one of the employees.
+Ralph: They are probably the only living that can see us. 
+Johan: Huh. The more you know I guess.
+Corinne: I'm sorry that I am eavdropping for a bit. Just making sure you are not planing on anything, or especially going mess with the building. 
+Ralph: You don't have to worry about us causing any problems, we are just some old souls catching up.
+// CORINNE
+Corinne: Okay, just checking. I will leave you to two be then.
+=== 
