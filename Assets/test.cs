@@ -56,7 +56,7 @@ namespace Yarn.Unity
                Debug.Log("Test Collider: " + other.gameObject.name);
               if(isRepeatable)
                outline.enabled = true;
-               // If the dialogue hasn't been played yet or it's repeatable
+               // If the dialogue hasn't been played yet, or it's repeatable
                if (!dialogueRunner.IsDialogueRunning &&
                    (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) &&
                    (isRepeatable || !hasPlayed))
