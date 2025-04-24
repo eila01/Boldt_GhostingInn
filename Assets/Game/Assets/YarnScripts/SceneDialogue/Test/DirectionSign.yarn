@@ -1,17 +1,17 @@
 ﻿title: DirectionSign
 tags:
 ---
-Cedarwood Building ↑
-Cougar Trail →
-Creekside Building ←
+Sign: Cedarwood Building ↑
+Sign: Cougar Trail →
+Sign: Creekside Building ←
 ===
 title: CougarTrailSign01
 tags:
 ---
-Cougar Trail - 
-Cedar Creek River             1.3 m
-Lakeside Campground       4.2 m
-Corinne: It's the only trail that leads down to the river, and conveniently to the nearby campground.
+Sign: Cougar Trail - 
+Sign: Cedar Creek River             1.3 m
+Sign: Lakeside Campground       4.2 m
+Sign: Corinne: It's the only trail that leads down to the river, and conveniently to the nearby campground.
 Corinne: Weather like this,  it is about this time of the year the inn would be getting some guest
 ===
 title: EncounterSherry01
@@ -20,7 +20,7 @@ Corinne: Hmmm?
 // Corinne Looks over Sherry (a ghost that mearly haunts the inn)
 Corinne: (Never seen that ghost before.)
 Corinne: ...
-Corinne: ...um  you looking for something?
+Corinne: ... you looking for something?
 UNKNOWN: ...
 <<wait 1.5>>
 //Sherry Looks over 

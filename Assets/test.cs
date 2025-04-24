@@ -21,6 +21,8 @@ namespace Yarn.Unity
        // [SerializeField] Sprite interactSprite;
        [SerializeField] AudioClip interactSoundClip;
        private bool hasPlayed = false; 
+       [SerializeField] GameObject spriteInteract;
+
        void Start()
        {
            dialogueRunner = FindObjectOfType<DialogueRunner>();
@@ -42,6 +44,7 @@ namespace Yarn.Unity
        private void OnTriggerEnter(Collider other)
        {
            if ((other.CompareTag("Player") || other.gameObject.CompareTag("Player")) && !hasPlayed){
+               spriteInteract.SetActive(true);
                SoundFXManager.instance.playSoundFXClip(interactSoundClip, transform, 1f);
                 
        }
@@ -61,7 +64,7 @@ namespace Yarn.Unity
                    (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) &&
                    (isRepeatable || !hasPlayed))
                {
-                   
+                   spriteInteract.SetActive(false);
                    Debug.Log(dialogueRunner.name + " In Test — Starting node: " + startNodeName);
                    dialogueRunner.StartDialogue(startNodeName);
                    
@@ -79,7 +82,7 @@ namespace Yarn.Unity
 
         private void OnTriggerExit(Collider other)
         {
-            
+            spriteInteract.SetActive(false);
                 outline.enabled = false;
             
         }

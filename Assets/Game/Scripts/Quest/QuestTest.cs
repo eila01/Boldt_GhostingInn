@@ -11,6 +11,8 @@ public class QuestTest : MonoBehaviour
     public Transform fleePosition;
     private bool atPosition = false;
     public ObjectiveManager objectiveManager;
+    public PopupTutorial popupTutorial;
+    public Door door;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -23,9 +25,15 @@ public class QuestTest : MonoBehaviour
     {
         if (currentPossession >= 1)
         {
-            npcManager.transform.position = Vector3.MoveTowards(npcManager.transform.position,fleePosition.position, speed * Time.deltaTime);
-            objectiveManager.TalkToRoy();
-
+           npcManager.transform.position = Vector3.MoveTowards(npcManager.transform.position,fleePosition.position, speed * Time.deltaTime);
+           if (npcManager.transform.position == fleePosition.position)
+           {
+               currentPossession = 0;
+           }
+           // objectiveManager.TalkToRoy();
+          //  popupTutorial.talkToRoyText();
+          // popupTutorial.PauseTutorial();
+        //  currentPossession = 0;
         }
 
         
@@ -40,7 +48,7 @@ public class QuestTest : MonoBehaviour
             if (npcManager.transform.position == fleePosition.position)
             {
                 currentPossession = 0;
-                npcTransform.transform.Rotate(0, 90, 0);
+               // npcTransform.transform.Rotate(0, 90, 0);
                 atPosition = true; 
                 
                        // fleePosition.position = 0;
@@ -55,6 +63,13 @@ public class QuestTest : MonoBehaviour
     {
         Debug.Log("countUp");
         currentPossession++;
+       // npcManager.transform.position = Vector3.MoveTowards(npcManager.transform.position,fleePosition.position, speed * Time.deltaTime);
+        objectiveManager.TalkToRoy();
+        popupTutorial.talkToRoyText();
+        popupTutorial.PauseTutorial();
+        door.Open(npcManager.transform.position);
+        currentPossession = 0;
+        // npcManager.transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
     public void countDown()

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
@@ -12,55 +13,81 @@ public class PopupTutorial : MonoBehaviour
     [SerializeField] float tweenDuration;
     [SerializeField] CanvasGroup tutorialCanvasGroup;
     [SerializeField] TextMeshProUGUI tutorialText;
+    private void Update()
+    {
+        if (tutorialMenu.activeInHierarchy && Input.anyKeyDown)
+        {
+            StartCoroutine(waitForMovement());
+            //Resume();
+        }
+    }
     public void Home()
     {
-        // SceneController.Instance.OpenScene("Main Menu")
         Time.timeScale = 1;
     }
 
     public void Restart()
     {
-        // SceneController.Instance.RestartLevel();
         Time.timeScale = 1;
     }
 
-    public void Pause()
+    public void PauseTutorial()
     {
         tutorialMenu.SetActive(true);
-        Time.timeScale = 0;
-        PausePanelIntro();
+        //Time.timeScale = 0;
+        TutorialPanelIntro();
     }
 
     public async void Resume()
     {
-        await PausePanelOutro();
+        await TutorialPanelOutro();
         tutorialMenu.SetActive(false);
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
     }
 
-    void PausePanelIntro()
+    void TutorialPanelIntro()
     {
         tutorialCanvasGroup.DOFade(1, tweenDuration).SetUpdate(true);
         tutorialContainer.DOAnchorPosY(endPosY, tweenDuration).SetUpdate(true);
     }
-    async Task PausePanelOutro()
+    async Task TutorialPanelOutro()
     {
         await tutorialContainer.DOAnchorPosY(startPosY, tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
     }
 
-    void interactTutorial()
+    public void interactTutorialText()
     {
         tutorialText.text = "Press E or LMB to interact with objects";
     }
-    void pauseTutorial()
+    public void pauseTutorialText()
     {
         tutorialText.text = "Press P to pause and bring up current objective";
     }
 
-    void switchTutorial()
+    public void switchTutorialText()
     {
-        tutorialText.text = "Press Right Shift to swap between Flute and Corinne";
+        Debug.Log("Before: " + tutorialText.text);
+
+        tutorialText.text = "Press Right Shift to swap between Flute and Corinne. When controlling Flute press Left Shift and Ctrl to move up or down.";
+        Debug.Log("After: " + tutorialText.text);
 
     }
-     
+    public void fluteTutorialText()
+    {
+        tutorialText.text = "Flute can possess electric devices that can cause a disturbance or a change in the environment. Press E to possess electric interactable objects. ";
+
+    }
+    public void talkToRoyText()
+    {
+        Debug.Log("Before: " + tutorialText.text);
+        tutorialText.text = "Swap to Corinne to talk to Roy";
+        Debug.Log("After: " + tutorialText.text);
+
+    }
+
+    IEnumerator waitForMovement()
+    {
+        yield return new WaitForSeconds(3.5f);
+        Resume();
+    }
 }

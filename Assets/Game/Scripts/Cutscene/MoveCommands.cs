@@ -1,10 +1,42 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 using Yarn.Unity.Example;
 
 public class MoveCommands : MonoBehaviour
 {
+    public DialogueRunner runner;
+
+    [System.Serializable]
+    public class NamedObject
+    {
+        public string name;
+        public GameObject target;
+    }
+
+    public List<NamedObject> objectsToControl = new List<NamedObject>();
+    private Dictionary<string, GameObject> objectLookup;
+
+    void Awake()
+    {
+        objectLookup = new Dictionary<string, GameObject>();
+        foreach (var item in objectsToControl)
+        {
+            objectLookup[item.name] = item.target;
+        }
+    }
+    void Start()
+    {
+        if (runner == null)
+            runner = FindObjectOfType<DialogueRunner>();
+
+        if (runner != null)
+        {
+            runner.AddCommandHandler<string>("showObject", ShowObject);
+            runner.AddCommandHandler<string>("hideObject", HideObject);
+        }
+    }
     [YarnCommand("move")]
     public static IEnumerator MoveObject(string objectName, float x, float y, float z, float duration)
     {
@@ -55,5 +87,50 @@ public class MoveCommands : MonoBehaviour
 
         // Unlock player movement
         PlayerController.canMove = true;
+    }
+    
+    // Show a GameObject by name
+    void ShowObject(string objectName)
+    {
+        GameObject obj = FindInactiveObjectByName(objectName);
+        if (obj != null)
+        {
+            obj.SetActive(true);
+            Debug.Log($"[Yarn] Activated object: {objectName}");
+        }
+        else
+        {
+            Debug.LogWarning($"[Yarn] Object '{objectName}' not found.");
+        }
+    }
+
+    void HideObject(string objectName)
+    {
+        GameObject obj = FindInactiveObjectByName(objectName);
+        if (obj != null)
+        {
+            obj.SetActive(false);
+            Debug.Log($"[Yarn] Deactivated object: {objectName}");
+        }
+        else
+        {
+            Debug.LogWarning($"[Yarn] Object '{objectName}' not found.");
+        }
+    }
+
+    GameObject FindInactiveObjectByName(string name)
+    {
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject go in allObjects)
+        {
+            if (go.name == name &&
+                !go.hideFlags.HasFlag(HideFlags.NotEditable) &&
+                !go.hideFlags.HasFlag(HideFlags.HideAndDontSave) &&
+                go.scene.IsValid())
+            {
+                return go;
+            }
+        }
+        return null;
     }
 }

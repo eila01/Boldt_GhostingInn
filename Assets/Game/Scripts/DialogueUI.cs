@@ -11,6 +11,7 @@ public class DialogueUI : DialogueViewBase
     
     [SerializeField] private Color defaultColor;
     [SerializeField] private Color unknownColor;
+    [SerializeField] private Color signColor;
     [SerializeField] private Color corinneColor;
     [SerializeField] private Color fluteColor;
     [SerializeField] private Color sherryColor;
@@ -58,6 +59,10 @@ public class DialogueUI : DialogueViewBase
             case "UNKNOWN":
                 textBoxBackground.color = unknownColor;
                 characterBoxBackground.color = unknownColor;
+                break;
+            case "Sign":
+                textBoxBackground.color = signColor;
+                characterBoxBackground.color = signColor;
                 break;
             default:
                 textBoxBackground.color = defaultColor; // Default color

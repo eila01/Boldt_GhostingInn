@@ -38,7 +38,7 @@ public class RoomCameraSwap : MonoBehaviour
         {
             rightRotate = true;
             corinne.transform.Rotate(0, -90, 0);
-            npc.transform.Rotate(0, -90, 0);
+            // npc.transform.Rotate(0, -90, 0);
             switchToCamera(roomCamera);
             roomCamera.Follow = corinne.transform;
             roomCamera.LookAt = corinne.transform;
@@ -87,11 +87,12 @@ public class RoomCameraSwap : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (playerSwitch.player1Active == true)
+        if (playerSwitch.player1Active == true && other.gameObject.tag == "Flute")
         {
             rightRotate = false;
             corinne.transform.rotation = originalPlayerRotation;
             flute.transform.rotation = originalPlayerRotation;
+            npc.transform.Rotate(0, 90, 0);
             switchToCamera(primaryCamera);
             primaryCamera.Follow = corinne.transform;
             primaryCamera.LookAt = corinne.transform;

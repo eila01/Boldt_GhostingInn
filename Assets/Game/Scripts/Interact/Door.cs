@@ -26,6 +26,22 @@ public class Door : MonoBehaviour
         
     }
 
+    public void OpenSimple()
+    {
+        doorOpenEvent.Invoke();
+        if (!IsOpen)
+        {
+            if (AnimationCoroutine != null)
+            {
+                StopCoroutine(AnimationCoroutine);
+            }
+
+            if (IsRotatingDoor)
+            {
+                AnimationCoroutine = StartCoroutine(DoRotationOpen(1f)); // opening the door based on the player pos
+            }
+        }
+    }
     public void Open(Vector3 UserPosition)
     {
         doorOpenEvent.Invoke();

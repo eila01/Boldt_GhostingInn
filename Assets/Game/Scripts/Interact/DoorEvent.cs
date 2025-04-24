@@ -6,7 +6,7 @@ public class DoorEvent : MonoBehaviour
     [SerializeField] public Door door;
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "NPC")
+        if ((collider.gameObject.tag == "NPC") || (collider.CompareTag("NPC")))
         {
             door.Open(collider.transform.position);
         }
