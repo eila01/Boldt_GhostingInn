@@ -3,10 +3,14 @@ tags:
 ---
 
 Clyde: Hey Corinne!
+<<camera_look_at "Clyde">>
+
+//leaves 
+
 // Camera Look over to Clyde
 // Corinne moves up to Clyde
 <<move "Corinne" 4.94 0.4363544 15 2>>
-
+<<camera_revert>>
 Corinne: Good morning, Clyde, how's the inn looking right now
 Clyde: Well, the morning started off well until this one guest, his name is Roy Elmore. And when he came in weird paranormal stuff was happening.
 Clyde: Like some the lights were flickering on and off just nonstop. I mean it finally did stop when he left the lobby.
@@ -153,6 +157,25 @@ UNKNOWN: All you need to know that he made my life miserable when I was once ali
 Flute: (Great. Can't talk them out of it for now.) 
 Flute: (Guess I will have to make use of this room.)
 Flute: (Maybe if I make a mess or get this guy over the edge then he'll leave. And hopefully Corinne can get him to leave the inn for good.) 
+===
+title: FluteListenToRoy01
+tags:
+---
+Roy: This room is a mess. No matter what I do I can't seem to just turn of the lights.
+Roy: Never expect this place to be falling apart this soon. 
+Roy: Maybe I could complain and get a different room...
+Flute: To get this guy to leave, maybe I could make this room more unbearable for him. 
+===
+title: LeavesRoom
+tags: 
+---
+Roy: Now what!?
+<<camera_look_at "ROY_2">>
+Roy: Lights broken and now the T.V. is turning itself on! 
+Roy: I have enough of this room!
+//leaves 
+<<camera_revert>>
+Flute: Time to follow after him.
 ===
 title: RoyAnnoyanceOutside
 tags:

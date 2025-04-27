@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using Yarn.Unity;
 using Yarn.Unity.Example;
@@ -132,5 +133,10 @@ public class MoveCommands : MonoBehaviour
             }
         }
         return null;
+    }
+
+    void CameraFocus(GameObject target, Camera camera, CinemachineCamera cCamera)
+    {
+        cCamera.LookAt = target.transform;
     }
 }
