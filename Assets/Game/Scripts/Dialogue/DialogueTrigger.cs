@@ -9,7 +9,7 @@ public class DialogueLine
 }
 
 [System.Serializable]
-public class Dialogue
+public partial class Dialogue
 {
     public List<DialogueLine> dialogueLines = new List<DialogueLine>();
 }
